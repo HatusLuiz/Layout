@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layout</title>
+  <style>
+    body {
+      display: flex;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    
+    #menu {
+      width: 20%;
+      background-color: #c48686;
+      color: #fff;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    #menu img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+    }
+
+    #main-content {
+      flex: 1;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table, th, td {
+      border: 5px solid #000000;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      margin-bottom: 50px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #fff;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="menu">
+    <img src="C:\Users\Hatus\Downloads\3364044.png" alt="Ícone Padrão">
+    <p>Clarisse Luz</p>
+    <p>Disciplina é a base do sucesso, para ter uma qualidade de vida saudável como programadora a organização é primordial.</p>
+
+    <ul>
+      <li><a href="https://calendar.google.com">Calendário</a></li>
+      <li><a href="https://www.notion.so">Notion</a></li>
+      <li><a href="https://www.microsoft.com/pt-br/microsoft-365/excel?ef_id=_k_CjwKCAiAqY6tBhAtEiwAHeRopfH0UqtW8GrqhJumoJD7Dj-JC3gzp_YcdklSJ4Ybdxu74HGxZduKORoCNS0QAvD_BwE_k_&OCID=AIDcmmq9ldqz5w_SEM__k_CjwKCAiAqY6tBhAtEiwAHeRopfH0UqtW8GrqhJumoJD7Dj-JC3gzp_YcdklSJ4Ybdxu74HGxZduKORoCNS0QAvD_BwE_k_&gad_source=1&gclid=CjwKCAiAqY6tBhAtEiwAHeRopfH0UqtW8GrqhJumoJD7Dj-JC3gzp_YcdklSJ4Ybdxu74HGxZduKORoCNS0QAvD_BwE">Excel</a></li>
+      <li><a href="https://www.google.com/intl/pt-BR/gmail/about/">Email</a></li>
+    </ul>
+  </div>
+
+  <div id="main-content">
+    <h1>Lista de Tarefas</h1>
+
+    <table>
+      <tr>
+        <th>Dia</th>
+        <th>Noite</th>
+      </tr>
+      <tr>
+        <td>
+          <ul>
+            <li>Acordar às 05:10 da manhã</li>
+            <li>Tomar café da manhã</li>
+            <li>Fazer 30 minutos de yoga</li>
+            <li>Meditar</li>
+            <li>Ler livro da semana</li>
+            <li>Tomar banho e ir para o trabalho</li>
+            <li>Fazer as tasks do trabalho</li>
+            <li>Almoçar</li>
+            <li>Reunião</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>Voltar do trabalho e fazer higiene pessoal</li>
+            <li>Ir para academia</li>
+            <li>Fazer cardio</li>
+            <li>Jantar</li>
+            <li>Ler o livro da semana</li>
+            <li>Tomar suco verde</li>
+            <li>Meditar</li>
+            <li>Preparar a cama</li>
+            <li>Ir dormir às 22:30</li>
+
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <script>
+        function adicionarTarefa(periodo) {
+          var novaTarefa = prompt('Digite a nova tarefa para ' + periodo + ':');
+          
+          if (novaTarefa) {
+            var tabela = document.querySelector('#main-content table');
+            var novaLinha = tabela.insertRow();
+      
+            var celulaDia = novaLinha.insertCell(0);
+            var celulaNoite = novaLinha.insertCell(1);
+      
+            if (periodo === 'Dia') {
+              celulaDia.innerHTML = '<li>' + novaTarefa + '</li>';
+            } else {
+              celulaNoite.innerHTML = '<li>' + novaTarefa + '</li>';
+            }
+          }
+        }
+      
+        function removerTarefa(periodo) {
+          var tabela = document.querySelector('#main-content table');
+          var linhas = tabela.getElementsByTagName('tr');
+          var ultimaLinha = linhas[linhas.length - 1];
+      
+          if (ultimaLinha) {
+            var celulaDia = ultimaLinha.cells[0];
+            var celulaNoite = ultimaLinha.cells[1];
+      
+            if (periodo === 'Dia') {
+              if (celulaDia.children.length > 0) {
+                celulaDia.children[0].remove();
+              }
+            } else {
+              if (celulaNoite.children.length > 0) {
+                celulaNoite.children[0].remove();
+              }
+            }
+          }
+        }
+      </script>
+      
+      <button onclick="adicionarTarefa('Dia')">Adicionar Tarefa (Dia)</button>
+      <button onclick="removerTarefa('Dia')">Remover Tarefa (Dia)</button>
+      
+      <button onclick="adicionarTarefa('Noite')">Adicionar Tarefa (Noite)</button>
+      <button onclick="removerTarefa('Noite')">Remover Tarefa (Noite)</button>
+  </div>
+
+</body>
+</html>
